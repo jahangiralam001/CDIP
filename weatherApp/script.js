@@ -2,6 +2,7 @@ const btn = document.getElementById('src-btn');
 const cityInput = document.getElementById('input-city');
 const city_name = document.getElementById("city-name");
 const time = document.getElementById("time");
+const trempressure = document.getElementById("tempressure");
 
 async function getApiCall(city){
    const promise = await fetch(
@@ -14,7 +15,11 @@ async function getApiCall(city){
 btn.addEventListener("click",async () =>{
     const cityName =  cityInput.value;
     const result = await getApiCall(cityName);
-    city_name.innerText = `${result.location.name},${result.location.country}`
+    city_name.innerText = `${result.location.name},${result.location.country}`;
+    time.innerText = result.location.localtime;
+    trempressure.innerText = `${result.current.temp_c}`;
+
+
 });
 
 
